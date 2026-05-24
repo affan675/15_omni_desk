@@ -1,0 +1,40 @@
+@media (max-width: 768px) {
+  #app-container {
+    flex-direction: column;
+  }
+  #mobile-menu-btn {
+    display: block;
+  }
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    height: 100vh;
+    z-index: 1000;
+    transition: left 0.3s;
+  }
+  .sidebar.open {
+    left: 0;
+  }
+  .topbar {
+    justify-content: space-between;
+    padding: 15px;
+  }
+  .main-content {
+    padding: 15px;
+  }
+  .kanban-board {
+    flex-direction: column;
+  }
+  .kanban-col {
+    width: 100%;
+  }
+  .data-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .flex-row.align-start {
+    flex-direction: column;
+  }
+}

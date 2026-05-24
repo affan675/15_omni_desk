@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Income | OmniDesk</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <div id="app-layout"></div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/income.js"></script>
+    <script>
+        function getPageContent() {
+            return `
+                <h2>Income Tracker</h2>
+                <div class="dashboard-grid mb-2 mt-1">
+                    <div class="card">
+                        <h3>Monthly Target (₹10K)</h3>
+                        <div class="progress-bg mt-1"><div class="progress-bar" id="pb-month"></div></div>
+                        <p id="pt-month" class="text-right mt-05"></p>
+                    </div>
+                    <div class="card">
+                        <h3>Yearly Target (₹15L)</h3>
+                        <div class="progress-bg mt-1"><div class="progress-bar" id="pb-year"></div></div>
+                        <p id="pt-year" class="text-right mt-05"></p>
+                    </div>
+                </div>
+                <div class="flex-row mb-2 align-start">
+                    <div class="card flex-1">
+                        <h3>Income Chart</h3>
+                        <div style="height: 300px; position: relative; width: 100%;">
+                            <canvas id="incomeMainChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="card" style="min-width: 300px;">
+                        <h3>Add Income</h3>
+                        <input type="text" id="i-client" placeholder="Client Name" class="input-full mb-1 mt-1">
+                        <input type="number" id="i-amount" placeholder="Amount (₹)" class="input-full mb-1">
+                        <input type="date" id="i-date" class="input-full mb-1">
+                        <input type="text" id="i-desc" placeholder="Description" class="input-full mb-1">
+                        <button class="btn btn-primary input-full" onclick="addIncome()">Save Income</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Recent Transactions</h3>
+                    <table class="data-table mt-1">
+                        <thead><tr><th>Date</th><th>Client</th><th>Desc</th><th>Amount</th><th>Act</th></tr></thead>
+                        <tbody id="income-tbody"></tbody>
+                    </table>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>

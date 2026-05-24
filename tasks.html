@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks | OmniDesk</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/tasks.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <div id="app-layout"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/tasks.js"></script>
+    <script>
+        function getPageContent() {
+            return `
+                <div class="flex-between mb-2">
+                    <h2>Task Manager</h2>
+                    <button class="btn btn-primary" onclick="openTaskModal()"><i class="fas fa-plus"></i> New Task</button>
+                </div>
+                <div class="tabs mb-2">
+                    <button class="btn btn-tab" data-view="kanban" onclick="switchView('kanban')"><i class="fas fa-columns"></i> Kanban</button>
+                    <button class="btn btn-tab" data-view="list" onclick="switchView('list')"><i class="fas fa-list"></i> List</button>
+                    <button class="btn btn-tab" data-view="calendar" onclick="switchView('calendar')"><i class="fas fa-calendar"></i> Calendar</button>
+                </div>
+                <div id="view-container"></div>
+
+                <!-- Task Modal -->
+                <div id="task-modal" class="modal hidden">
+                    <div class="modal-content">
+                        <h3>Add / Edit Task</h3>
+                        <input type="hidden" id="t-id">
+                        <input type="text" id="t-title" placeholder="Task Title" class="input-full mb-1">
+                        <select id="t-project" class="input-full mb-1"></select>
+                        <div class="flex-row mb-1">
+                            <select id="t-priority" class="input-full"><option value="low">Low</option><option value="med">Med</option><option value="high">High</option></select>
+                            <input type="date" id="t-due" class="input-full">
+                        </div>
+                        <select id="t-status" class="input-full mb-1"><option value="todo">To Do</option><option value="in-progress">In Progress</option><option value="review">Review</option><option value="done">Done</option></select>
+                        <button class="btn btn-primary" onclick="saveTask()">Save Task</button>
+                        <button class="btn" onclick="closeModal('task-modal')">Cancel</button>
+                    </div>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+/* KANBAN */
+.kanban-board {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+.kanban-col {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  width: 280px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+.kanban-col h3 {
+  padding: 15px;
+  border-bottom: 1px solid var(--border);
+  font-size: 1rem;
+  margin: 0;
+}
+.k-list {
+  padding: 10px;
+  flex: 1;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.kanban-card {
+  background: var(--surface);
+  padding: 15px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  user-select: none;
+}
+.k-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.k-meta {
+  font-size: 0.8rem;
+  color: var(--text);
+  opacity: 0.8;
+  margin-bottom: 10px;
+}
+.k-actions {
+  display: flex;
+  gap: 5px;
+  justify-content: space-between;
+}
+.k-actions button {
+  padding: 4px 8px;
+  font-size: 0.8rem;
+  min-height: unset;
+}
+
+/* CALENDAR */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+.cal-day {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  min-height: 100px;
+  padding: 5px;
+  border-radius: 4px;
+}
+.cal-date {
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  text-align: right;
+}
+.cal-task {
+  background: var(--primary);
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 2px 4px;
+  border-radius: 3px;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}

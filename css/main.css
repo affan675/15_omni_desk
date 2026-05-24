@@ -1,0 +1,346 @@
+/* BASE & THEMES */
+:root {
+  --font: system-ui, -apple-system, sans-serif;
+  --radius: 8px;
+  --transition: 0.3s ease;
+}
+
+/* Palette A - Midnight Focus */
+body.palette-a.theme-light {
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --primary: #6366f1;
+  --secondary: #10b981;
+  --text: #1e293b;
+  --border: #e2e8f0;
+}
+body.palette-a.theme-dark {
+  --bg: #0f172a;
+  --surface: #1e293b;
+  --primary: #818cf8;
+  --secondary: #34d399;
+  --text: #e2e8f0;
+  --border: #334155;
+}
+
+/* Palette B - Warm Productivity */
+body.palette-b.theme-light {
+  --bg: #fffbeb;
+  --surface: #ffffff;
+  --primary: #d97706;
+  --secondary: #059669;
+  --text: #451a03;
+  --border: #fde68a;
+}
+body.palette-b.theme-dark {
+  --bg: #1c1917;
+  --surface: #292524;
+  --primary: #fbbf24;
+  --secondary: #34d399;
+  --text: #fde68a;
+  --border: #44403c;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  transition:
+    background var(--transition),
+    color var(--transition);
+}
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+/* LAYOUT */
+#app-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+.sidebar {
+  width: 250px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+  transition: var(--transition);
+  z-index: 100;
+}
+.sidebar-logo {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: var(--primary);
+}
+.nav-link {
+  padding: 15px 20px;
+  display: block;
+  color: var(--text);
+  transition: var(--transition);
+}
+.nav-link:hover,
+.nav-link.active {
+  background: var(--bg);
+  border-left: 4px solid var(--primary);
+}
+.nav-link i {
+  width: 25px;
+}
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+.topbar {
+  background: var(--surface);
+  padding: 15px 30px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  gap: 15px;
+}
+
+/* UTILS */
+.card {
+  background: var(--surface);
+  padding: 20px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+.flex-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.align-start {
+  align-items: flex-start;
+}
+.mt-05 {
+  margin-top: 5px;
+}
+.mt-1 {
+  margin-top: 10px;
+}
+.mt-2 {
+  margin-top: 20px;
+}
+.mb-1 {
+  margin-bottom: 10px;
+}
+.mb-2 {
+  margin-bottom: 20px;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+.hidden {
+  display: none !important;
+}
+
+/* BUTTONS & INPUTS */
+.btn {
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: var(--transition);
+  min-height: 44px;
+  font-weight: 500;
+}
+.btn:hover {
+  filter: brightness(0.9);
+}
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+}
+.btn-primary:hover {
+  filter: brightness(1.1);
+}
+.btn-tab {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: none;
+}
+.btn-tab.active {
+  background: var(--primary);
+  color: #fff;
+}
+.input-full {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* CUSTOM CURSORS */
+body.cursors-enabled .complete-task {
+  cursor:
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="%2310B981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>'),
+    auto !important;
+}
+body.cursors-enabled .kanban-card {
+  cursor:
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><text y="20" font-size="20">🖐️</text><text y="22" x="12" font-size="12">⚙️</text></svg>'),
+    grab !important;
+}
+body.cursors-enabled .kanban-card:active {
+  cursor: grabbing !important;
+}
+
+/* PRELOADER */
+#preloader {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.5s ease;
+}
+.gear-spinner {
+  font-size: 3rem;
+  color: var(--primary);
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.loader-text {
+  margin-top: 15px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--text);
+  animation: fadeInOut 1.5s ease-in-out infinite alternate;
+}
+@keyframes fadeInOut {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* MODALS */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.modal-content {
+  background: var(--surface);
+  padding: 25px;
+  border-radius: var(--radius);
+  width: 90%;
+  max-width: 400px;
+  border: 1px solid var(--border);
+}
+
+/* PROGRESS & TABLES */
+.progress-bg {
+  background: var(--bg);
+  height: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.progress-bar {
+  background: var(--secondary);
+  height: 100%;
+  width: 0%;
+  transition: width 1s ease;
+}
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+.data-table th,
+.data-table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* SPECIFIC COMPS */
+.mini-task {
+  border-left: 4px solid var(--primary);
+}
+.gantt-container {
+  position: relative;
+  height: auto;
+  min-height: 100px;
+  padding: 10px 0;
+  border-left: 2px solid var(--border);
+}
+.gantt-bar {
+  height: 30px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  font-size: 0.8rem;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* MOBILE TOGGLE */
+#mobile-menu-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text);
+  cursor: pointer;
+}

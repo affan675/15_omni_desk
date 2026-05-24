@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | OmniDesk</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <div id="app-layout"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/charts.js"></script>
+    <script>
+        document.addEventListener('omniReady', () => {
+            const tasks = loadData('omni_tasks');
+            const income = loadData('omni_income');
+            const projects = loadData('omni_projects');
+
+            // Today's Focus (Top 3 active)
+            const activeTasks = tasks.filter(t => t.status !== 'done').sort((a,b) => new Date(a.dueDate) - new Date(b.dueDate)).slice(0, 3);
+            document.getElementById('dash-tasks').innerHTML = activeTasks.map(t => `<div class="card mini-task"><i class="fas fa-thumbtack"></i> ${t.title} <small>${t.dueDate}</small></div>`).join('') || '<p>No tasks today! 🎉</p>';
+
+            // Time Tracking Summary
+            const todayStr = new Date().toISOString().split('T')[0];
+            let todayMins = 0;
+            tasks.forEach(t => t.timeLogs.forEach(log => {
+                if(log.start.startsWith(todayStr)) todayMins += log.duration;
+            }));
+            document.getElementById('dash-time').innerHTML = `<h3>${(todayMins / 60).toFixed(1)} Hours</h3><p>Tracked Today</p>`;
+
+            // Active Projects
+            const activeProj = projects.filter(p => p.status !== 'completed');
+            document.getElementById('dash-projects').innerHTML = activeProj.map(p => `<div class="card mini-proj">${p.name} - ${p.status}</div>`).join('') || '<p>No active projects.</p>';
+
+            // Income Summary
+            const currentMonth = new Date().getMonth();
+            const monthIncome = income.filter(i => new Date(i.date).getMonth() === currentMonth).reduce((sum, i) => sum + i.amount, 0);
+            document.getElementById('dash-income-text').innerText = `₹${monthIncome} / ₹10,000 this month`;
+            initDashChart(monthIncome);
+        });
+
+        function getPageContent() {
+            return `
+                <div class="header-actions">
+                    <h2>Welcome back, Affan 🚀</h2>
+                </div>
+                <div class="dashboard-grid">
+                    <div class="card section-card">
+                        <h3>Today's Focus</h3>
+                        <div id="dash-tasks" class="flex-col"></div>
+                        <a href="tasks.html" class="btn btn-primary mt-1">Go to Tasks</a>
+                    </div>
+                    <div class="card section-card">
+                        <h3>Income Summary</h3>
+                        <div style="height: 160px; position: relative; width: 100%;">
+                            <canvas id="dashIncomeChart"></canvas>
+                        </div>
+                        <p id="dash-income-text" class="text-center mt-1"></p>
+                    </div>
+                    <div class="card section-card">
+                        <h3>Active Projects</h3>
+                        <div id="dash-projects" class="flex-col"></div>
+                    </div>
+                    <div class="card section-card flex-center">
+                        <div id="dash-time" class="text-center"></div>
+                    </div>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>

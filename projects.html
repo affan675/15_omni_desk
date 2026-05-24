@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | OmniDesk</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <div id="app-layout"></div>
+    <script src="js/app.js"></script>
+    <script src="js/projects.js"></script>
+    <script>
+        function getPageContent() {
+            return `
+                <div class="flex-between mb-2">
+                    <h2>Projects</h2>
+                    <button class="btn btn-primary" onclick="openProjModal()"><i class="fas fa-plus"></i> New Project</button>
+                </div>
+                <div class="card mb-2">
+                    <h3>Project Timelines</h3>
+                    <div id="gantt-chart" class="gantt-container mt-1"></div>
+                </div>
+                <div id="projects-list" class="dashboard-grid"></div>
+
+                <div id="proj-modal" class="modal hidden">
+                    <div class="modal-content">
+                        <h3>Project Details</h3>
+                        <input type="hidden" id="p-id">
+                        <input type="text" id="p-name" placeholder="Project Name" class="input-full mb-1">
+                        <input type="number" id="p-budget" placeholder="Budget (₹)" class="input-full mb-1">
+                        <div class="flex-row mb-1">
+                            <input type="date" id="p-start" class="input-full">
+                            <input type="date" id="p-end" class="input-full">
+                        </div>
+                        <select id="p-status" class="input-full mb-1"><option value="active">Active</option><option value="completed">Completed</option></select>
+                        <button class="btn btn-primary" onclick="saveProject()">Save</button>
+                        <button class="btn" onclick="closeModal('proj-modal')">Cancel</button>
+                    </div>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
