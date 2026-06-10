@@ -2,7 +2,7 @@
 
 **OmniDesk** is a high-performance personal management dashboard built for tracking tasks, projects, income, and strategic business roadmaps. It features a modern, responsive UI with dynamic themes and local data persistence — **no backend required**.
 
-![OmniDesk Home Page](screenshots/home_page.jpg)
+![OmniDesk Home Page](screenshots/home_page.JPG)
 
 ---
 
@@ -169,13 +169,13 @@ Planned additions:
 # 📸 Screenshots
 
 ## Dashboard
-![Dashboard Screenshot](screenshots/dashboard.jpg)
+![Dashboard Screenshot](screenshots/dashboard.JPG)
 
 ## Kanban Board
-![Kanban Screenshot](screenshots/kanban.jpg)
+![Kanban Screenshot](screenshots/kanban.JPG)
 
 ## Timeline View
-![Timeline Screenshot](screenshots/timeline.jpg)
+![Timeline Screenshot](screenshots/timeline.JPG)
 
 ---
 
